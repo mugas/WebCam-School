@@ -171,40 +171,106 @@ getVideo();
 video.addEventListener("canplay", paintToCanvas); //! Speech recognition
 
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-var recognition = new SpeechRecognition();
-recognition.interimResults = true;
-recognition.lang = "en";
-var p = document.createElement("p");
-var h1 = document.createElement("h1");
-var words = document.querySelector(".words");
-words.appendChild(h1);
-recognition.addEventListener("result", function (e) {
-  // console.log(e);
-  var transcript = Array.from(e.results).map(function (result) {
-    return result[0];
-  }).map(function (result) {
-    return result.transcript;
-  }).join("");
-  console.log(e.results);
-  h1.textContent = transcript;
 
+function start() {
+  console.log("starting");
+  var recognition = new SpeechRecognition();
+  recognition.interimResults = true;
+  recognition.lang = "fi";
+  recognition.continuous = true;
+  recognition.onresult = handleResult;
+  recognition.start;
+}
+
+function handleResult(event) {
+  console.log("event");
+}
+
+start();
+/* const p = document.createElement("p");
+let h1 = document.createElement("h1");
+const words = document.querySelector(".words");
+words.appendChild(h1);
+
+recognition.addEventListener("result", (e) => {
+  // console.log(e);
+  const transcript = Array.from(e.results)
+    .map((result) => result[0])
+    .map((result) => result.transcript)
+    .join("");
+  console.log(e.results);
+
+  h1.textContent = transcript;
   if (e.results[0].isFinal) {
     // if we finish talking we create another paragraph
     h1 = document.createElement("h1");
+
     words.appendChild(h1);
   }
-
   if (transcript.includes("unicorn")) {
-    var emoji = document.createElement("span");
+    const emoji = document.createElement("span");
     emoji.textContent = "🦄";
     console.log("yei");
     words.appendChild(emoji);
   }
-
   console.log(transcript);
 });
+
+const colors = [
+  "aqua",
+  "azure",
+  "beige",
+  "bisque",
+  "black",
+  "blue",
+  "brown",
+  "chocolate",
+  "coral",
+  "crimson",
+  "cyan",
+  "fuchsia",
+  "ghostwhite",
+  "gold",
+  "goldenrod",
+  "gray",
+  "green",
+  "indigo",
+  "ivory",
+  "khaki",
+  "lavender",
+  "lime",
+  "linen",
+  "magenta",
+  "maroon",
+  "moccasin",
+  "navy",
+  "olive",
+  "orange",
+  "orchid",
+  "peru",
+  "pink",
+  "plum",
+  "purple",
+  "red",
+  "salmon",
+  "sienna",
+  "silver",
+  "snow",
+  "tan",
+  "teal",
+  "thistle",
+  "tomato",
+  "turquoise",
+  "violet",
+  "white",
+  "yellow",
+];
+
+function 
+
 recognition.addEventListener("end", recognition.start);
 recognition.start();
+ */
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -233,7 +299,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50424" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51737" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

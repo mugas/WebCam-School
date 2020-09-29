@@ -57,11 +57,21 @@ video.addEventListener("canplay", paintToCanvas);
 window.SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 
-const recognition = new SpeechRecognition();
-recognition.interimResults = true;
-recognition.lang = "en";
+function start() {
+  console.log("starting");
+  const recognition = new SpeechRecognition();
+  recognition.interimResults = true;
+  recognition.lang = "fi";
+  recognition.continuous = true;
+  recognition.onresult = handleResult;
+  recognition.start;
+}
 
-const p = document.createElement("p");
+function handleResult(event) {
+  console.log("event");
+}
+start();
+/* const p = document.createElement("p");
 let h1 = document.createElement("h1");
 const words = document.querySelector(".words");
 words.appendChild(h1);
@@ -90,5 +100,58 @@ recognition.addEventListener("result", (e) => {
   console.log(transcript);
 });
 
+const colors = [
+  "aqua",
+  "azure",
+  "beige",
+  "bisque",
+  "black",
+  "blue",
+  "brown",
+  "chocolate",
+  "coral",
+  "crimson",
+  "cyan",
+  "fuchsia",
+  "ghostwhite",
+  "gold",
+  "goldenrod",
+  "gray",
+  "green",
+  "indigo",
+  "ivory",
+  "khaki",
+  "lavender",
+  "lime",
+  "linen",
+  "magenta",
+  "maroon",
+  "moccasin",
+  "navy",
+  "olive",
+  "orange",
+  "orchid",
+  "peru",
+  "pink",
+  "plum",
+  "purple",
+  "red",
+  "salmon",
+  "sienna",
+  "silver",
+  "snow",
+  "tan",
+  "teal",
+  "thistle",
+  "tomato",
+  "turquoise",
+  "violet",
+  "white",
+  "yellow",
+];
+
+function 
+
 recognition.addEventListener("end", recognition.start);
 recognition.start();
+ */
