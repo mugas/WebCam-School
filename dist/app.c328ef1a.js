@@ -120,7 +120,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"app.js":[function(require,module,exports) {
 var video = document.querySelector(".player");
 var canvas = document.querySelector(".photo");
+var photobooth = document.getElementsByTagName("html")[0];
 var ctx = canvas.getContext("2d");
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+var h1 = document.createElement("h1");
+var words = document.querySelector(".words");
+var colors = ["aqua", "azure", "beige", "bisque", "black", "blue", "brown", "chocolate", "coral", "crimson", "cyan", "fuchsia", "ghostwhite", "gold", "goldenrod", "gray", "green", "indigo", "ivory", "khaki", "lavender", "lime", "linen", "magenta", "maroon", "moccasin", "navy", "olive", "orange", "orchid", "peru", "pink", "plum", "purple", "red", "salmon", "sienna", "silver", "snow", "tan", "teal", "thistle", "tomato", "turquoise", "violet", "white", "yellow"];
 
 function getVideo() {
   navigator.mediaDevices.getUserMedia({
@@ -167,110 +172,55 @@ function rgbSplit(pixels) {
   return pixels;
 }
 
-getVideo();
-video.addEventListener("canplay", paintToCanvas); //! Speech recognition
+getVideo(); //! Speech recognition
 
-window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-function start() {
-  console.log("starting");
-  var recognition = new SpeechRecognition();
-  recognition.interimResults = true;
-  recognition.lang = "fi";
-  recognition.continuous = true;
-  recognition.onresult = handleResult;
-  recognition.start;
-}
-
-function handleResult(event) {
-  console.log("event");
-}
-
-start();
-/* const p = document.createElement("p");
-let h1 = document.createElement("h1");
-const words = document.querySelector(".words");
+var recognition = new SpeechRecognition();
+recognition.continuous = true;
+recognition.interimResults = true;
+recognition.lang = "en";
 words.appendChild(h1);
 
-recognition.addEventListener("result", (e) => {
-  // console.log(e);
-  const transcript = Array.from(e.results)
-    .map((result) => result[0])
-    .map((result) => result.transcript)
-    .join("");
-  console.log(e.results);
+function test() {
+  recognition.addEventListener("result", function (e) {
+    // console.log(e);
+    var transcript = Array.from(e.results).map(function (result) {
+      return result[0];
+    }).map(function (result) {
+      return result.transcript;
+    }).join("");
+    h1.textContent = transcript;
 
-  h1.textContent = transcript;
-  if (e.results[0].isFinal) {
-    // if we finish talking we create another paragraph
-    h1 = document.createElement("h1");
+    if (e.results[0].isFinal) {
+      // if we finish talking we create another paragraph
+      h1 = document.createElement("h1");
+      words.appendChild(h1);
+    }
 
-    words.appendChild(h1);
-  }
-  if (transcript.includes("unicorn")) {
-    const emoji = document.createElement("span");
-    emoji.textContent = "🦄";
-    console.log("yei");
-    words.appendChild(emoji);
-  }
-  console.log(transcript);
-});
+    if (transcript.includes("unicorn")) {
+      var emoji = document.createElement("span");
+      emoji.textContent = "🦄";
+      photobooth.classList.add("unicorn");
+      canvas.classList.add("unicorn");
+      console.log("yei");
+      words.appendChild(emoji);
+    }
 
-const colors = [
-  "aqua",
-  "azure",
-  "beige",
-  "bisque",
-  "black",
-  "blue",
-  "brown",
-  "chocolate",
-  "coral",
-  "crimson",
-  "cyan",
-  "fuchsia",
-  "ghostwhite",
-  "gold",
-  "goldenrod",
-  "gray",
-  "green",
-  "indigo",
-  "ivory",
-  "khaki",
-  "lavender",
-  "lime",
-  "linen",
-  "magenta",
-  "maroon",
-  "moccasin",
-  "navy",
-  "olive",
-  "orange",
-  "orchid",
-  "peru",
-  "pink",
-  "plum",
-  "purple",
-  "red",
-  "salmon",
-  "sienna",
-  "silver",
-  "snow",
-  "tan",
-  "teal",
-  "thistle",
-  "tomato",
-  "turquoise",
-  "violet",
-  "white",
-  "yellow",
-];
+    console.log(transcript);
+  });
+  recognition.start();
+}
+/* function colorBackground(color) {
+  colors.map((color) => {
+    console.log(color);
+  });
+}
 
-function 
+colorBackground() */
 
-recognition.addEventListener("end", recognition.start);
-recognition.start();
- */
+
+video.addEventListener("canplay", paintToCanvas);
+recognition.addEventListener("end", test);
+test();
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -299,7 +249,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51737" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55705" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

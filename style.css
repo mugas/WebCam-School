@@ -11,10 +11,14 @@ html {
 }
 
 .photobooth {
-  background: white;
+  background: transparent;
   max-width: 150rem;
   margin: 2rem auto;
   border-radius: 2px;
+}
+
+.unicorn {
+  background: url("https://images.unsplash.com/photo-1585544313985-f84aac5abf7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80");
 }
 
 /*clearfix*/
@@ -25,7 +29,7 @@ html {
 }
 
 .photo {
-  width: 50%;
+  width: 25%;
   float: left;
 }
 
@@ -59,7 +63,8 @@ html {
 }
 p {
   margin: 0 0 3rem;
-  color: yellow;
+  color: blue;
+  font-size: 4em;
 }
 
 h1 {
