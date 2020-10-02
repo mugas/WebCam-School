@@ -1,7 +1,7 @@
 html {
   box-sizing: border-box;
   font-size: 10px;
-  background: #ffc600;
+  background: #c9dbe9;
 }
 
 *,
@@ -10,12 +10,39 @@ html {
   box-sizing: inherit;
 }
 
+.hidden-egg {
+  border: 2px red solid;
+  flex: 1;
+  height: 100vh;
+  background: #c9dbe9;
+  background: -webkit-linear-gradient(top, #c9dbe9 0%, #fff 100%);
+  background: -linear-gradient(top, #c9dbe9 0%, #fff 100%);
+  background: -moz-linear-gradient(top, #c9dbe9 0%, #fff 100%);
+}
+
 .photobooth {
+  display: flex;
+  max-width: 150rem;
+  margin: 2rem auto;
+  border-radius: 2px;
+  min-height: 100vh;
+}
+
+.camera {
+  display: flex;
+  flex-direction: column;
+}
+
+.player {
+  flex: 1;
+}
+
+/* .photobooth {
   background: transparent;
   max-width: 150rem;
   margin: 2rem auto;
   border-radius: 2px;
-}
+} */
 
 .unicorn {
   background: url("https://images.unsplash.com/photo-1585544313985-f84aac5abf7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80");
@@ -29,8 +56,8 @@ html {
 }
 
 .photo {
-  width: 25%;
-  float: left;
+  width: 100%;
+  height: 50%;
 }
 
 .player {
